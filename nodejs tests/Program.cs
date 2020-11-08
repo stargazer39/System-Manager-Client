@@ -44,6 +44,11 @@ namespace nodejs_tests
             get;
             set;
         }
+        public string from
+        {
+            get;
+            set;
+        }
     }
     class Program
     {
@@ -76,7 +81,7 @@ namespace nodejs_tests
                             Ping(message, client);
                             break;
                         case "command":
-                            OnCommand(message);
+                            OnCommand(message,client);
                             break;
                         case "shell":
                             await RunShell(message, client);
@@ -97,7 +102,7 @@ namespace nodejs_tests
             HandShake shake = new HandShake();
             Client.Send(JsonConvert.SerializeObject(shake));
         }
-        static void OnCommand(dynamic Message)
+        static void OnCommand(dynamic Message, WebsocketClient Client)
         {
             Console.WriteLine("Got a command");
             string data = Message.data;
@@ -110,7 +115,17 @@ namespace nodejs_tests
                     argus[1] = Library.PathToURI(argus[1]);
                 }
             }
-            Process.Start(argus[0], argus[1]);
+            string message = null;
+            try
+            {
+                Process.Start(argus[0], argus[1]);
+                message = "The Command Was Successful";
+            }catch(Exception err)
+            {
+                message = $"The Command UnSuccessful \n {err}";
+            }
+            Message msg = new Message { message = message, from = "shell" };
+            Client.Send(JsonConvert.SerializeObject(msg));
         }
         static void Ping(dynamic Message, WebsocketClient Client)
         {
@@ -131,13 +146,13 @@ namespace nodejs_tests
             string message;
             if (result.HadErr)
             {
-                message = "The command was unsucessfull \n" + result.OutString;
+                message = "The Command Was Unuccessful \n" + result.OutString;
             }
             else
             {
-                message = "The command was sucessfull \n" + result.OutString;
+                message = "The Command Was Successful \n" + result.OutString;
             }
-            Message msg = new Message { message = message };
+            Message msg = new Message { message = message, from = "shell"};
             Client.Send(JsonConvert.SerializeObject(msg));
         }
     }
