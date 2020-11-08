@@ -6,6 +6,7 @@ using System.Timers;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.IO;
 
 namespace nodejs_tests
 {
@@ -86,6 +87,9 @@ namespace nodejs_tests
                         case "shell":
                             await RunShell(message, client);
                             break;
+                        case "files":
+                            await FileOperations(message, client);
+                            break;
                     }
                   
                 });
@@ -153,6 +157,36 @@ namespace nodejs_tests
                 message = "The Command Was Successful \n" + result.OutString;
             }
             Message msg = new Message { message = message, from = "shell"};
+            Client.Send(JsonConvert.SerializeObject(msg));
+        }
+        static async Task FileOperations(dynamic Message, WebsocketClient Client)
+        {
+            string path = Message.data;
+            try
+            {
+                int index = Message.index;
+                DirectoryInfo info = new DirectoryInfo(path);
+                DirectoryInfo[] dinfo = info.GetDirectories();
+                List<string> strArr = new List<string>();
+                foreach (DirectoryInfo dirr in dinfo)
+                {
+                    Console.WriteLine(dirr.Name);
+                    strArr.Add(dirr.Name);
+                }
+                path = path + "\\" + strArr[index];
+            }
+            catch
+            {
+            }
+            DirectoryInfo info2 = new DirectoryInfo(path);
+            DirectoryInfo[] dinfo2 = info2.GetDirectories();
+            List<string> strArr2 = new List<string>();
+            foreach (DirectoryInfo dirr in dinfo2)
+            {
+                Console.WriteLine(dirr.Name);
+                strArr2.Add(dirr.Name);
+            }
+            Message msg = new Message { message = JsonConvert.SerializeObject(strArr2), from = "files" };
             Client.Send(JsonConvert.SerializeObject(msg));
         }
     }
