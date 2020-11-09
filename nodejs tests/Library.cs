@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -11,6 +12,15 @@ namespace nodejs_tests
 {
     class Library
     {
+        public static List<string> JtokenToList(Newtonsoft.Json.Linq.JArray jArray)
+        {
+            List<string> res = new List<string>();
+            foreach(JToken token in jArray)
+            {
+                res.Add(token.ToString());
+            }
+            return res;
+        }
         public static List<string> stringParse(string String)
         {
             List<string> strArr = new List<string>();
