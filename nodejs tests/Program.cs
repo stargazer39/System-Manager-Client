@@ -152,7 +152,7 @@ namespace nodejs_tests
                 }
                 catch (Exception err)
                 {
-                    message = $"The command was unuccessful. Error :: \n {err.Message}";
+                    message = $"The command was unuccessful.\n{err.Message}";
                 }
                 Console.WriteLine(message);
                 GenericCommand com = new GenericCommand { type = "command", data = message, haderror = true };
