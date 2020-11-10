@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\StargazeR\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\StargazeR\\.nuget\\packages"
+    ]
+  }
+}

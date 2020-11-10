@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "dgSpecHash": "o1eM2paEB/ztzA0kYD/lnQ8kacmBjslDXhfPzGij8GKfSpgoYKg3eZBFrrbtWxE+b5tC5Cp6B/1Z3xQKxxoajg==",
+  "success": true,
+  "projectFilePath": "K:\\Git\\SysManClient\\SysManClient.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\StargazeR\\.nuget\\packages\\json.net\\1.0.23\\json.net.1.0.23.nupkg.sha512",
+    "C:\\Users\\StargazeR\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\StargazeR\\.nuget\\packages\\system.management.automation.dll\\10.0.10586\\system.management.automation.dll.10.0.10586.nupkg.sha512",
+    "C:\\Users\\StargazeR\\.nuget\\packages\\system.reactive\\4.3.2\\system.reactive.4.3.2.nupkg.sha512",
+    "C:\\Users\\StargazeR\\.nuget\\packages\\system.threading.channels\\4.7.0\\system.threading.channels.4.7.0.nupkg.sha512",
+    "C:\\Users\\StargazeR\\.nuget\\packages\\websocket.client\\4.3.21\\websocket.client.4.3.21.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'System.Management.Automation.dll 10.0.10586' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "libraryId": "System.Management.Automation.dll",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    }
+  ]
+}
